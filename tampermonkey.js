@@ -57,7 +57,42 @@
         menu.style.background = 'white';
         menu.style.border = '1px solid black';
         menu.style.zIndex = '10000';
+        menu.style.width = '600px';
+        menu.style.display = 'flex';
+        menu.style.flexWrap = 'wrap';
         document.body.appendChild(menu);
+
+        function adjustMenuForScreenSize() {
+            if (window.innerWidth < 2400) {
+                menu.style.width = '19%';
+            } else {
+                menu.style.width = '600px';
+            }
+        }
+
+        adjustMenuForScreenSize();
+
+        window.addEventListener('resize', adjustMenuForScreenSize);
+
+        function createAndAppendHeader(headerText) {
+            const section = document.createElement('div');
+            section.style.display = 'flex';
+            section.style.flexWrap = 'wrap';
+            section.style.alignItems = 'center';
+            section.style.gap = '10px';
+
+            const header = document.createElement('h3');
+            header.textContent = headerText;
+            header.style.color = 'black';
+            header.style.fontSize = '20px';
+            header.style.margin = '10px 0 5px';
+            header.style.flexBasis = '100%';
+            header.style.margin = '10px 0';
+            section.appendChild(header);
+            menu.appendChild(header);
+
+            return section;
+        }
 
         // Функция для создания и добавления кнопки
         function createAndAppendButton(text, onClickFunction) {
@@ -65,8 +100,9 @@
             button.appendTo(menu);
         }
 
-        // Создание и добавление кнопок
-        createAndAppendButton("Проверка текста на раскрытие тем", checkSenseArticle);
+        
+        createAndAppendHeader("Написать текст"); // Создает заголовок, удобно разграничивать кнопки
+        createAndAppendButton("Проверка текста на раскрытие тем", checkSenseArticle); // Создание и добавление кнопок. Будут добавляться в строку с отступом
     }
 
     class ButtonCreator {
