@@ -5,7 +5,8 @@
 </ol>
 
 Всё. На выходе получите менюшку, в которую можете добавлять свои кнопки с промтами:
-![image](https://github.com/RomanVerdysh/TamperMonkey-Menu-ChatGPT/assets/909951/00d5b1b3-524c-45f2-8d14-f464cd929db0)
+![image](https://github.com/RomanVerdysh/TamperMonkey-Menu-ChatGPT/assets/909951/ae00c493-c0a2-4868-a74a-b59f4207c84b)
+
 
 Оставил вам 1 для примера.
 
