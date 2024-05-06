@@ -4,7 +4,7 @@
 // @version      1.0
 // @description  Добавляет в правую нижнюю часть страницы меню с вашими кастомными промтами, чтобы каждый раз не вводить руками свои конструкции.
 // @author       Roman Verdysh
-// @match        https://chat.openai.com/*
+// @match        *chatgpt.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -13,8 +13,8 @@
 
     function executeChatCommand(text) {
         // Проверка, что скрипт запущен на нужной странице
-        if (!window.location.href.includes("chat.openai.com")) {
-            alert("Этот скрипт работает только на странице https://chat.openai.com/");
+        if (!window.location.href.includes("chatgpt.com")) {
+            alert("Этот скрипт работает только на странице https://chatgpt.com/");
             return;
         }
 
