@@ -111,17 +111,17 @@
         // Адаптивная верстка через JavaScript
         function adjustMenuForScreenSize() {
             if (window.innerWidth < 1450) {
-                menu.style.width = '17%';
+                menu.style.width = '15%';
                 menu.style.maxHeight = '500px';
                 a.style.display = 'none';
             } else if (window.innerWidth < 1950) {
-                menu.style.width = '18%';
+                menu.style.width = '17%';
                 menu.style.maxHeight = '600px';
                 a.style.display = 'none';
             } else if (window.innerWidth < 2400) {
-                menu.style.width = '30%';
+                menu.style.width = '25%';
             } else {
-                menu.style.width = '750px';
+                menu.style.width = '650px';
             }
         }
 
