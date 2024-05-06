@@ -51,27 +51,84 @@
     function addCustomUI() {
         const menu = document.createElement('div');
         menu.style.position = 'fixed';
-        menu.style.bottom = '20px';
+        menu.style.top = '20px';
         menu.style.right = '20px';
         menu.style.padding = '10px';
         menu.style.background = 'white';
         menu.style.border = '1px solid black';
         menu.style.zIndex = '10000';
         menu.style.width = '600px';
+        menu.style.maxHeight = '900px';
         menu.style.display = 'flex';
         menu.style.flexWrap = 'wrap';
+        menu.style.overflow = 'auto';
         document.body.appendChild(menu);
 
-        function adjustMenuForScreenSize() {
-            if (window.innerWidth < 2400) {
-                menu.style.width = '19%';
+        // Кнопка для сворачивания/разворачивания
+        const toggleButton = document.createElement('button');
+        toggleButton.textContent = 'Развернуть';
+        toggleButton.style.position = 'absolute';
+        toggleButton.style.top = '0';
+        toggleButton.style.right = '0';
+        toggleButton.style.padding = '5px';
+        toggleButton.style.cursor = 'pointer';
+        toggleButton.style.color = 'white'; // Цвет текста
+        toggleButton.style.backgroundColor = '#007BFF'; // Цвет фона
+        toggleButton.style.border = 'none'; // Убираем стандартную рамку кнопки
+        toggleButton.style.boxShadow = '0px 2px 5px rgba(0,0,0,0.2)'; // Добавляем тень для лучшей видимости
+        menu.appendChild(toggleButton);
+
+        const a = document.createElement('span');
+        a.innerHTML = 'Telegram-канал автора: <a href="https://t.me/craftseo"><u>Крафтовое SEO</u></a>';
+        a.style.position = 'absolute';
+        a.style.color = '#000';
+        a.style.top = '0';
+        a.style.fontSize = '12px';
+        a.style.left = '0';
+        a.style.padding = '5px 5px 5px 10px';
+        a.style.width = '70%';
+        menu.appendChild(a);
+
+        // Сворачиваем меню по умолчанию
+        let isCollapsed = true;
+        menu.style.overflow = 'hidden';
+        menu.style.height = '30px'; // Высота для показа только кнопки
+
+        // Функция переключения сворачивания/разворачивания
+        toggleButton.onclick = function() {
+            if (isCollapsed) {
+                menu.style.height = ''; // Убираем ограничение по высоте
+                toggleButton.textContent = 'Свернуть';
+                menu.style.overflow = 'auto';
             } else {
-                menu.style.width = '600px';
+                menu.style.height = '30px';
+                toggleButton.textContent = 'Развернуть';
+                menu.style.overflow = 'hidden';
+            }
+            isCollapsed = !isCollapsed;
+        };
+
+        // Адаптивная верстка через JavaScript
+        function adjustMenuForScreenSize() {
+            if (window.innerWidth < 1450) {
+                menu.style.width = '17%';
+                menu.style.maxHeight = '500px';
+                a.style.display = 'none';
+            } else if (window.innerWidth < 1950) {
+                menu.style.width = '18%';
+                menu.style.maxHeight = '600px';
+                a.style.display = 'none';
+            } else if (window.innerWidth < 2400) {
+                menu.style.width = '30%';
+            } else {
+                menu.style.width = '750px';
             }
         }
 
+        // вызовем функцию при загрузке страницы
         adjustMenuForScreenSize();
 
+        // добавим обработчик события resize
         window.addEventListener('resize', adjustMenuForScreenSize);
 
         function createAndAppendHeader(headerText) {
@@ -83,13 +140,27 @@
 
             const header = document.createElement('h3');
             header.textContent = headerText;
+            header.style.fontFamily = 'Arial, Sans-Serif';
+            header.style.fontWeight = 'Bold';
             header.style.color = 'black';
-            header.style.fontSize = '20px';
-            header.style.margin = '10px 0 5px';
+            header.style.fontSize = '18px';
+            header.style.margin = '10px 0px 5px 0px';
             header.style.flexBasis = '100%';
-            header.style.margin = '10px 0';
             section.appendChild(header);
             menu.appendChild(header);
+
+            function adjustHeaderForScreenSize() {
+                if (window.innerWidth < 1400) {
+                    header.style.fontSize = '16px';
+                    header.style.margin = '10px 0px 0px 0px';
+                }
+            }
+
+            // вызовем функцию при загрузке страницы
+            adjustHeaderForScreenSize();
+
+            // добавим обработчик события resize
+            window.addEventListener('resize', adjustHeaderForScreenSize);
 
             return section;
         }
@@ -100,9 +171,15 @@
             button.appendTo(menu);
         }
 
-        
-        createAndAppendHeader("Написать текст"); // Создает заголовок, удобно разграничивать кнопки
-        createAndAppendButton("Проверка текста на раскрытие тем", checkSenseArticle); // Создание и добавление кнопок. Будут добавляться в строку с отступом
+        // Создание и добавление кнопок
+        createAndAppendHeader("Проверка текста"); // Создает заголовок, удобно разграничивать кнопки
+        createAndAppendButton("Раскрытия тем", checkSenseArticle); // Создание и добавление кнопок. Будут добавляться в строку с отступом
+        createAndAppendButton("Редакция", textRevision); // Создание и добавление кнопок. Будут добавляться в строку с отступом
+
+        createAndAppendHeader("Написать текст");
+        createAndAppendButton("Темы для Guest Post", themeForGuestPosts);
+        createAndAppendButton("Title и Description на текст", makeTitleDescription);
+        createAndAppendButton("Напиши Guest Post", writeGP);
     }
 
     class ButtonCreator {
