@@ -1,4 +1,7 @@
 <h2>tampermonkey.js - свои закладки промтов</h2>
+
+**Не забудьте подписаться на мой Telegram-канал <a href="https://t.me/craftseo">Крафтовое SEO</a>.**
+
 <ol>
   <li>Скачиваем сам плагин для Google Chrome - <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">tampermonkey</a></li>
   <li>Закидываем в него содержимое моего chatGPT.js и claudeAI.js</li>
